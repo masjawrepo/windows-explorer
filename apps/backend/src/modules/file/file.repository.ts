@@ -1,4 +1,3 @@
-// src/modules/file/file.repository.ts
 import { db } from '../../db'
 import { files } from '../../db/schema'
 import { eq } from 'drizzle-orm'

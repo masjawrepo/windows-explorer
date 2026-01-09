@@ -1,7 +1,6 @@
 <template>
   <li>
     <div class="flex items-center gap-1">
-      <!-- Arrow SVG -->
       <svg
         v-if="folder.children?.length"
         @click.stop="$emit('toggleFolder', folder)"
@@ -20,7 +19,6 @@
         <polyline points="9 18 15 12 9 6" />
       </svg>
 
-      <!-- Folder name -->
       <span
         @click="$emit('selectFolder', folder.id)"
         class="cursor-pointer select-none"

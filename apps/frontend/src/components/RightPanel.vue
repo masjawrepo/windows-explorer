@@ -1,21 +1,17 @@
 <template>
   <div>
     <h2 class="font-bold mb-4 text-gray-700">Contents</h2>
+    <div class="mb-3 text-sm text-gray-600">
+      <span
+        v-for="(b, i) in breadcrumb"
+        :key="b.id"
+        class="cursor-pointer hover:underline"
+        @click="emit('selectFolder', b.id)"
+      >
+        {{ b.name }}<span v-if="i < breadcrumb.length - 1"> / </span>
+      </span>
+  </div>
 
-    <!-- Breadcrumb (opsional, nanti bisa diisi) -->
-    
-      <div class="mb-3 text-sm text-gray-600">
-  <span
-    v-for="(b, i) in breadcrumb"
-    :key="b.id"
-    class="cursor-pointer hover:underline"
-    @click="emit('selectFolder', b.id)"
-  >
-    {{ b.name }}<span v-if="i < breadcrumb.length - 1"> / </span>
-  </span>
-</div>
-
-    <!-- Grid of folders/files -->
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
       <div
         v-for="item in children"
@@ -23,7 +19,6 @@
         class="flex items-center p-2 border rounded hover:bg-blue-100 cursor-pointer"
         @click="onItemClick(item)"
       >
-        <!-- Icon based on type -->
         <div class="mr-3 text-2xl">
           <span v-if="item.type === 'folder'">📁</span>
           <span v-else>📄</span>
@@ -71,7 +66,6 @@ watch(
     )
     const data = await res.json()
 
-    // tentukan type folder/file
     children.value = data
   },
   { immediate: true }
@@ -79,7 +73,7 @@ watch(
 
 function onItemClick(item: any) {
   if (item.type === 'folder') {
-    emit('selectFolder', item.id) // 🔥 trigger auto-expand
+    emit('selectFolder', item.id)
   } else {
     alert(`File clicked: ${item.name}`)
   }

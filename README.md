@@ -22,36 +22,39 @@ This project demonstrates how to build a scalable folder tree structure with a c
 
 ### Backend
 
-* **Runtime:** Bun
+* **Runtime:** Bun **v1.3.5**
 * **Framework:** Elysia
 * **Language:** TypeScript
 * **Database:** MySQL
 * **ORM:** Drizzle ORM
-* **Architecture:** Service & Repository pattern
+* **API Style:** REST API with versioning (`/api/v1`)
+* **Architecture:** Service & Repository pattern (clean separation of concerns)
 
 ### Frontend
 
 * **Framework:** Vue 3
 * **API Style:** Composition API
 * **Build Tool:** Vite
-* **Runtime:** Bun
-* **Styling:** Utility-first (minimal UI, focus on logic)
+* **Runtime:** Bun **v1.3.5**
+* **Styling:** Utility-first (minimal UI, focus on logic & behavior)
 
 ---
 
 ## 📂 Monorepo Structure
 
+This project uses a **monorepo setup** to keep frontend and backend in a single repository while maintaining clear separation of responsibilities.
+
 ```bash
 apps/
-├── backend/
+├── backend/        # REST API, database access, business logic
 │   ├── src/
-│   │   ├── db/
-│   │   ├── modules/
-│   │   ├── app.ts
-│   │   └── server.ts
+│   │   ├── db/     # Drizzle schema, migrations, seed
+│   │   ├── modules/# Feature-based modules (service & repository)
+│   │   ├── app.ts  # Elysia app instance
+│   │   └── server.ts # HTTP server & routes
 │   └── bun.lockb
 │
-├── frontend/
+├── frontend/       # Vue 3 application (UI & interaction)
 │   ├── src/
 │   │   ├── components/
 │   │   ├── views/
@@ -63,7 +66,9 @@ apps/
 
 ## ⚙️ Requirements
 
-* **Bun** v1.x
+This project was developed and tested using:
+
+* **Bun** v1.3.5
 * **MySQL** (or compatible)
 * NodeJS is not required
 
@@ -129,7 +134,7 @@ bun run db:seed
 #### Run Backend
 
 ```bash
-bun run src/server.ts
+bun run dev
 ```
 
 Backend will run at:
@@ -158,11 +163,11 @@ http://localhost:5173
 
 ## 🔌 API Endpoints
 
-| Method | Endpoint                       | Description           |
-| ------ | ------------------------------ | --------------------- |
-| GET    | `/api/v1/folders/tree`         | Get full folder tree  |
-| GET    | `/api/v1/folders/:id/children` | Get direct subfolders |
-| GET    | `/api/v1/folders/:id/path`     | Get breadcrumb path   |
+| Method | Endpoint                       | Description                                  |
+| ------ | ------------------------------ | -------------------------------------------- |
+| GET    | `/api/v1/folders/tree`         | Get full folder tree (recursive, all levels) |
+| GET    | `/api/v1/folders/:id/children` | Get direct subfolders of a folder            |
+| GET    | `/api/v1/folders/:id/path`     | Get breadcrumb path (from root to folder)    |
 
 ---
 

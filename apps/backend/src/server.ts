@@ -1,15 +1,13 @@
-// src/server.ts
-import { app } from './app'   // import app instance
+import { app } from './app'
 import cors from '@elysiajs/cors'
 import { FolderService } from './modules/folder/folder.service'
 
-// ✨ GLOBAL CORS
+// SETTING GLOBAL CORS
 app.use(cors({
     origin: 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE']
 }))
 
-// 🌲 Routes
 app.get('/api/v1/folders/tree', async () => {
     return FolderService.getFolderTree()
 })

@@ -1,6 +1,5 @@
 <template>
   <div class="flex h-screen">
-    <!-- Left panel -->
     <div class="w-1/3 border-r border-gray-300 p-4 overflow-auto">
       <FolderTree
         :folders="folders"
@@ -10,7 +9,6 @@
       />
     </div>
 
-    <!-- Right panel -->
     <div class="flex-1 p-4 overflow-auto">
       <RightPanel
         :folderId="selectedFolderId"
@@ -51,7 +49,6 @@ onMounted(async () => {
   initExpanded(data)
   folders.value = data
 })
-
 
 // Update selected folder
 async function onSelectFolder(id: number) {
