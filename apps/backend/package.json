@@ -20,6 +20,8 @@
   },
   "scripts": {
     "dev": "bun run src/server.ts",
-    "seed": "bun run src/db/seed.ts"
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "bun run src/db/migrate.ts",
+    "db:seed": "bun run src/db/seed.ts"
   }
 }

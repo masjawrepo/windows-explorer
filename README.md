@@ -1,6 +1,6 @@
-### 📁 Windows Explorer – Web Application
+# 📁 Windows Explorer – Web Application
 
-A simple Windows Explorer–like web application built as part of a technical assessment.
+A simple Windows Explorer–like web application.
 
 This project demonstrates how to build a scalable folder tree structure with a clear separation between frontend and backend, using modern tools and best practices.
 
@@ -15,9 +15,6 @@ This project demonstrates how to build a scalable folder tree structure with a c
 * REST API with versioning
 * Monorepo structure (frontend + backend)
 * Clean separation between service and repository layers
-
-> **Note:**
-> File support is intentionally kept minimal. The main focus of this project is folder hierarchy, data structure, and interaction between panels.
 
 ---
 
@@ -77,7 +74,7 @@ apps/
 ### 1️⃣ Clone Repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/masjawrepo/windows-explorer.git
 cd windows-explorer
 ```
 
@@ -92,11 +89,50 @@ bun install
 
 #### Configure Database
 
-Update your database connection in:
 
-```ts
-src/db/index.ts
+```bash
+cd apps/backend
+bun install
 ```
+
+#### Configure Database
+
+Create a `.env` file in `apps/backend` directory:
+
+```env
+DB_HOST=localhost
+DB_PORT=3306
+DB_NAME=windows_explorer
+DB_USER=root
+DB_PASSWORD=your_password
+```
+
+> Make sure the database already exists before running migrations.
+
+#### Generate Database Migrations
+
+Generate migration files from Drizzle schema:
+
+```bash
+bun run db:generate
+```
+
+#### Run Database Migrations
+
+Apply migrations to the database:
+
+```bash
+bun run db:migrate
+```
+
+#### Seed Sample Data
+
+Insert sample folders and files into the database:
+
+```bash
+bun run db:seed
+```
+
 
 #### Run Backend
 
