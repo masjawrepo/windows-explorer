@@ -89,14 +89,6 @@ bun install
 
 #### Configure Database
 
-
-```bash
-cd apps/backend
-bun install
-```
-
-#### Configure Database
-
 Create a `.env` file in `apps/backend` directory:
 
 ```env
